@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vura Tax-shield Calculator</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="tax-calculator">
+      <h2>Vura Tax-shield Calculator</h2>
+
+      <label for="countries-select">Choose or Type a Country:</label>
+      <input
+        type="text"
+        id="countries-select"
+        list="africa-countries"
+        placeholder="Type a country..."
+      />
+
+      <datalist id="africa-countries">
+        <option value="Nigeria"></option>
+        <option value="Ghana"></option>
+        <option value="Kenya"></option>
+        <option value="South Africa"></option>
+        <option value="Egypt"></option>
+        <option value="Mauritius"></option>
+        <option value="Rwanda"></option>
+      </datalist>
+
+      <div class="toggle-container">
+        <span>Individual</span>
+        <input
+          type="checkbox"
+          id="tax-toggle"
+          class="toggle-checkbox"
+          placeholder="e.g 1000000"
+        />
+        <label for="tax-toggle" class="toggle-label"></label>
+        <span>Business</span>
+      </div>
+
+      <div id="individual-form">
+        <p>
+          <b>Enter your monthly salary <span id="currency-label">(₦)</span>:</b>
+        </p>
+        <div class="input-btn-container">
+          <input
+            class="t-box"
+            type="number"
+            id="monthlySalary"
+            placeholder="monthly-salary"
+          />
+          <button
+            type="button"
+            class="btn calculate-btn"
+            id="calculate-btn-individual"
+          >
+            Calculate
+          </button>
+        </div>
+      </div>
+
+      <div id="business-form" class="form">
+        <p>
+          <b
+            >Enter your monthly business revenue
+            <span id="currency-label-business">(₦)</span>:</b
+          >
+        </p>
+        <div class="input-btn-container">
+          <input
+            class="t-box"
+            type="number"
+            id="monthlyRevenue"
+            placeholder="monthly-revenue"
+          />
+          <button
+            type="button"
+            class="btn calculate-btn"
+            id="calculate-btn-business"
+          >
+            Calculate
+          </button>
+        </div>
+      </div>
+
+      <div class="box" id="resultBox">
+        Calculation results will appear here after pressing Calculate.
+      </div>
+    </div>
+
+    <script src="logic.js"></script>
+    <script src="taxcal.js"></script>
+  </body>
+</html>
