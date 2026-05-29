@@ -1,0 +1,84 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: #102a43;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  background-color: rgb(252, 228, 197);
+}
+/* the Bg of the signin btn*/
+.Bode {
+  width: min(100%, 840px);
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 36px;
+  padding: 46px 42px;
+  box-shadow: 0 42px 120px rgba(15, 23, 42, 0.15);
+  backdrop-filter: blur(16px);
+  transition:
+    background 0.4s ease,
+    transform 0.3s ease;
+}
+/* desinging the email and name box*/
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  border: 1px solid rgba(29, 54, 100, 0.14);
+  border-radius: 22px;
+  padding: 18px 22px;
+  background: rgba(255, 255, 255, 0.95);
+  color: #102a43;
+  font-size: 1rem;
+  outline: none;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+  margin-bottom: 22px;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+  border-color: rgba(59, 130, 246, 0.55);
+  box-shadow: 0 0 0 6px rgba(59, 130, 246, 0.12);
+}
+
+/* the BTN box */
+.btn {
+  border: none;
+  border-radius: 20px;
+  padding: 18px 32px;
+  background: linear-gradient(135deg, #00b4ff 0%, #0083d6 100%);
+  color: #ffffff;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 18px 32px rgba(0, 131, 214, 0.18);
+  transition:
+    transform 0.25s ease ease-in-out,
+    box-shadow 0.25s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 22px 36px rgba(0, 131, 214, 0.24);
+}
+
+.btn:active {
+  transform: translateY(0);
+  box-shadow: 0 18px 32px rgba(0, 131, 214, 0.18);
+}
