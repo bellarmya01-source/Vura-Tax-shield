@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vura Tax-Shield Calculator</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      .tab-bar {
+        display: flex;
+        gap: 0;
+        margin-bottom: 28px;
+        background: rgba(255,255,255,0.6);
+        border-radius: 22px;
+        padding: 5px;
+        border: 1px solid rgba(255,255,255,0.7);
+      }
+      .tab-btn {
+        flex: 1;
+        border: none;
+        background: transparent;
+        border-radius: 18px;
+        padding: 13px 10px;
+        font-weight: 700;
+        font-size: 0.95rem;
+        color: #627d98;
+        cursor: pointer;
+        transition: all 0.25s ease;
+      }
+      .tab-btn:hover {
+        color: #102a43;
+        background: rgba(255,255,255,0.7);
+      }
+      .tab-btn.active-tab {
+        background: linear-gradient(135deg, #00b4ff 0%, #0083d6 100%);
+        color: #fff;
+        box-shadow: 0 8px 22px rgba(0,131,214,0.22);
+      }
+      #panel-history { display: none; }
+      .history-toolbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 18px;
+      }
+      .history-toolbar h3 { margin: 0; color: #102a43; font-size: 1.1rem; }
+      .refresh-btn {
+        border: none;
+        border-radius: 14px;
+        padding: 10px 20px;
+        background: linear-gradient(135deg, #00b4ff 0%, #0083d6 100%);
+        color: #fff;
+        font-weight: 700;
+        font-size: 0.85rem;
+        cursor: pointer;
+        box-shadow: 0 6px 18px rgba(0,131,214,0.18);
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+      .refresh-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 24px rgba(0,131,214,0.24);
+      }
+      #history-tab-entries {
+        max-height: 520px;
+        overflow-y: auto;
+        padding-right: 4px;
+      }
+      #history-tab-entries::-webkit-scrollbar { width: 5px; }
+      #history-tab-entries::-webkit-scrollbar-thumb {
+        background: rgba(0,131,214,0.25);
+        border-radius: 99px;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div class="tax-calculator">
+      <h2>Vura Tax-Shield Calculator</h2>
+
+      <!-- TAB BAR -->
+      <div class="tab-bar">
+        <button class="tab-btn active-tab" id="tab-calculator">
+          🧮 Calculator
+        </button>
+        <button class="tab-btn" id="tab-history">
+          📋 History
+        </button>
+      </div>
+
+      <!-- CALCULATOR PANEL -->
+      <div id="panel-calculator">
+        <label for="countries-select">Choose or Type a Country:</label>
+        <input
+          type="text"
+          id="countries-select"
+          list="africa-countries"
+          placeholder="e.g. Nigeria, Ghana, Kenya…"
+          autocomplete="off"
+        />
+        <datalist id="africa-countries">
+          <option value="Nigeria"></option>
+          <option value="Ghana"></option>
+          <option value="Kenya"></option>
+          <option value="South Africa"></option>
+          <option value="Egypt"></option>
+          <option value="Mauritius"></option>
+          <option value="Rwanda"></option>
+          <option value="Equatorial Guinea"></option>
+        </datalist>
+
+        <div class="toggle-container">
+          <span>Individual</span>
+          <input type="checkbox" id="tax-toggle" class="toggle-checkbox" />
+          <label for="tax-toggle" class="toggle-label"></label>
+          <span>Business</span>
+        </div>
+
+        <div id="individual-form">
+          <p><b>Enter your monthly salary
+            <span id="currency-label">(₦)</span>:</b></p>
+          <div class="input-btn-container">
+            <input class="t-box" type="number" id="monthlySalary"
+              placeholder="e.g. 500000" min="1" />
+            <button type="button" class="btn calculate-btn"
+              id="calculate-btn-individual">Calculate</button>
+          </div>
+        </div>
+
+        <div id="business-form" class="form">
+          <p><b>Enter your monthly business revenue
+            <span id="currency-label-business">(₦)</span>:</b></p>
+          <div class="input-btn-container">
+            <input class="t-box" type="number" id="monthlyRevenue"
+              placeholder="e.g. 5000000" min="1" />
+            <button type="button" class="btn calculate-btn"
+              id="calculate-btn-business">Calculate</button>
+          </div>
+        </div>
+
+        <div class="box" id="resultBox">
+          Results will appear here after you press <strong>Calculate</strong>.
+        </div>
+      </div>
+
+      <!-- HISTORY PANEL -->
+      <div id="panel-history">
+        <div class="history-toolbar">
+          <h3>📋 Calculation History</h3>
+          <button class="refresh-btn" onclick="loadHistoryTab()">
+            🔄 Refresh
+          </button>
+        </div>
+        <div id="history-tab-entries">
+          <p style="color:#627d98;text-align:center;padding:20px 0;">
+            Click Refresh to load your history.
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="Auth.js"></script>
+    <script src="logic.js"></script>
+    <script src="taxcal.js"></script>
+  </body>
+</html>
