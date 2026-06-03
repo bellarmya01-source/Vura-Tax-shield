@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tax Shield Calculator</title>
+    <link rel="icon" href="favicon_4.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="stylepg.css" />
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      }
+      .welcome-container {
+        text-align: center;
+        background: white;
+        border-radius: 20px;
+        padding: 60px 40px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        max-width: 500px;
+      }
+      .welcome-container h1 {
+        color: #102a43;
+        margin-bottom: 20px;
+        font-size: 2.5rem;
+      }
+      .welcome-container p {
+        color: #627d98;
+        font-size: 1.1rem;
+        margin-bottom: 30px;
+        line-height: 1.6;
+      }
+      .loading-spinner {
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        border: 4px solid rgba(0, 131, 214, 0.2);
+        border-top-color: #0083d6;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin-top: 20px;
+      }
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      .user-id {
+        background: #f0f7ff;
+        border-radius: 12px;
+        padding: 15px;
+        margin: 20px 0;
+        color: #0083d6;
+        font-family: monospace;
+        font-size: 0.85rem;
+        word-break: break-all;
+        border: 1px solid rgba(0, 131, 214, 0.2);
+      }
+      .user-id-label {
+        color: #627d98;
+        font-size: 0.8rem;
+        margin-bottom: 5px;
+        font-weight: 600;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="welcome-container">
+      <h1>🛡️ Tax Shield</h1>
+      <p>
+        Welcome to your personal tax calculator with automatic history tracking!
+      </p>
+
+      <div class="user-id">
+        <div class="user-id-label">Your Unique ID (Auto-saved)</div>
+        <div id="display-user-id">Generating...</div>
+      </div>
+
+      <p style="color: #627d98; font-size: 0.95rem">
+        Your calculation history will be saved automatically to this device
+        using your unique ID.
+      </p>
+
+      <div class="loading-spinner"></div>
+      <p style="color: #627d98; margin-top: 20px">
+        Redirecting to calculator...
+      </p>
+    </div>
+
+    <script src="Auth.js"></script>
+    <script>
+      // Display the user ID on the welcome page
+      const userId = getUserId();
+      document.getElementById("display-user-id").textContent = userId;
+      // add a time delaye to this
+      window.onload = function () {
+        setTimeout(function () {
+          window.location.href = "calculator.html";
+        }, 3000); // Redirect after 3 seconds
+      };
+    </script>
+  </body>
+</html>
